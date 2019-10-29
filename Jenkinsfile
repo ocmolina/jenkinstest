@@ -2,10 +2,20 @@ pipeline {
   agent any
   stages {
     stage('build') {
-      steps {
-        sh '''echo "hello there!"
-echo $GIT_BRANCH'''
-      }
+      agent {
+                docker { image 'maven:3-alpine' }
+            }
+            steps {
+                sh 'mvn clean compile'
+            }
+    }
+    stage('test') {
+      agent {
+                docker { image 'maven:3-alpine' }
+            }
+            steps {
+                sh 'mvn clean test'
+            }
     }
   }
 }
