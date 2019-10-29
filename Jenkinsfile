@@ -6,7 +6,15 @@ pipeline {
                 docker { image 'maven:3-alpine' }
             }
             steps {
-                sh 'mvn --version'
+                sh 'mvn clean install'
+            }
+    }
+    stage('test') {
+      agent {
+                docker { image 'maven:3-alpine' }
+            }
+            steps {
+                sh 'mvn clean test'
             }
     }
   }
