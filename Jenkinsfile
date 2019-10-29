@@ -6,7 +6,7 @@ pipeline {
                 docker { image 'maven:3-alpine' }
             }
             steps {
-                sh 'mvn clean install'
+                sh 'mvn clean compile'
             }
     }
     stage('test') {
