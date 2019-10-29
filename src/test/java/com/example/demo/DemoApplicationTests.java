@@ -16,4 +16,10 @@ class DemoApplicationTests {
 		Assertions.assertTrue(true);
 	}
 
+
+    @Test
+    void testingFail() {
+        Assertions.assertTrue(false);
+    }
+
 }
