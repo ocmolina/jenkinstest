@@ -3,19 +3,33 @@ pipeline {
   stages {
     stage('build') {
       agent {
-                docker { image 'maven:3-alpine' }
-            }
-            steps {
-                sh 'mvn clean compile'
-            }
+        docker {
+          image 'maven:3-alpine'
+        }
+
+      }
+      steps {
+        sh 'mvn clean compile'
+      }
     }
     stage('test') {
       agent {
-                docker { image 'maven:3-alpine' }
+        docker {
+          image 'maven:3-alpine'
+        }
+
+      }
+      steps {
+        sh 'mvn clean test'
+      }
+    }
+    stage('deploy') {
+      when {
+                branch "master"
             }
-            steps {
-                sh 'mvn clean test'
-            }
+      steps {
+        build 'stage'
+      }
     }
   }
 }
