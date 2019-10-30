@@ -18,6 +18,31 @@
 		<java.version>1.8</java.version>
 	</properties>
 
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <server.port>8081</server.port>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>qa</id>
+            <properties>
+                <server.port>8082</server.port>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>stage</id>
+            <properties>
+                <server.port>8083</server.port>
+            </properties>
+        </profile>
+
+
+    </profiles>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -38,6 +63,12 @@
 	</dependencies>
 
 	<build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
